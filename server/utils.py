@@ -8,7 +8,7 @@ import string
 
 
 def get_ugly_string(min_len, max_len, chars=None):
-    rnd_len = random.randint(min_len, max_len)
+    rnd_len = get_random_int(min_len, max_len)
     if not chars:
         chars = string.ascii_letters + string.digits
     else:
@@ -16,3 +16,7 @@ def get_ugly_string(min_len, max_len, chars=None):
             chars = "".join(chars)
 
     return ''.join(random.SystemRandom().choice(chars) for _ in range(rnd_len))
+
+
+def get_random_int(min_len, max_len):
+    return random.SystemRandom().randint(min_len, max_len)
