@@ -20,3 +20,4 @@ def get_ugly_string(min_len, max_len, chars=None):
 
 def get_random_int(min_len, max_len):
     return random.SystemRandom().randint(min_len, max_len)
+

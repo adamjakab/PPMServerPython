@@ -17,6 +17,7 @@ class PPM_Request(ABC):
     _logger: Logger = None
     _is_new_session = False
 
+    _user = None
     _request_data = {}
 
     def __init__(self, req, cfg, logger):
@@ -44,6 +45,9 @@ class PPM_Request(ABC):
     def get_request_number():
         return session["request_number"]
 
+    def get_user(self):
+        return self._user
+
     def get_requested_service(self):
         service = None
 
@@ -51,6 +55,17 @@ class PPM_Request(ABC):
             service = self._request_data["service"]
 
         return service
+
+    def get_db_request(self):
+        db_request = None
+
+        if "db_request" in self._request_data:
+            db_request = self._request_data["db_request"]
+            db_request.update({
+                "user": self.get_user()
+            })
+
+        return db_request
 
 
 class PPM_UnencryptedRequest(PPM_Request):
@@ -64,6 +79,11 @@ class PPM_UnencryptedRequest(PPM_Request):
         except JSONDecodeError:
             raise RuntimeError("Raw data cannot be loaded. \n{}".
                                format(self._request.data))
+
+        if "user" not in self._request_data:
+            raise RuntimeError("Bad request! Attribute `user` must be set!")
+
+        self._user = self._request_data.get("user")
 
         self._logger.debug("Request: {}".format(self._request_data))
 

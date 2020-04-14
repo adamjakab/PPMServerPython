@@ -58,6 +58,9 @@ class PPM_Response(ABC):
             pass
         elif "db" == service:
             db = PPM_Storage(self._config, self._logger)
+            db_request = self._request.get_db_request()
+            db_response = db.handle_request_operation(db_request)
+            self._response_data.update({"db_response": db_response})
         else:
             raise RuntimeError("Unknown service({}) requested!".format(service))
 
