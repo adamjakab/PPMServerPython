@@ -35,9 +35,10 @@ create table cards
     modified   char(20) default (datetime('now', 'localtime')) not null
 );
 
-create index cards_idx_owner on cards (owner ASC);
 create index cards_idx_collection on cards (collection ASC);
+create index cards_idx_owner on cards (owner ASC);
 create index cards_idx_name on cards (name ASC);
+create unique index cards_uidx_owner_name on cards (owner, name);
 
 create table card_attributes
 (

@@ -1,0 +1,28 @@
+{
+  "SERVER_NAME": "localhost:9999",
+  "PPM_ROUTE": "/ppm",
+  "ENV": "development",
+  "DEBUG": true,
+  "SECRET_KEY": "<:::invent_your_unique_secret_key:::>",
+  "PERMANENT_SESSION_LIFETIME": 3600,
+  "MAX_COOKIE_SIZE": 4093,
+  "JSONIFY_MIMETYPE": "application/json",
+  "JSONIFY_PRETTYPRINT_REGULAR": false,
+  "JSON_AS_ASCII": true,
+  "JSON_SORT_KEYS": false,
+  "SESSION_COOKIE_SECURE": false,
+  "SESSION_REFRESH_EACH_REQUEST": true,
+  "PPM_CONFIG": {
+    "SEED_MIN_LENGTH": 24,
+    "SEED_MAX_LENGTH": 32,
+    "SEED_CHARS": [
+      "abcdefghijklmnopqrstuvwxyz",
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+      "0123456789",
+      "#@?!|&%^*+-=.:,;/([{< >}])"
+    ],
+    "PADDING_MIN_LENGTH": 32,
+    "PADDING_MAX_LENGTH": 128,
+    "DATABASE_FILE": "data/ppm.db"
+  }
+}
